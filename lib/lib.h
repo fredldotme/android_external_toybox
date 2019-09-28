@@ -311,7 +311,7 @@ int draw_trim_esc(char *str, int padto, int width, char *escmore,
 int draw_trim(char *str, int padto, int width);
 
 // tty.c
-int tty_fd(void);
+int tty_fd_tb(void);
 int terminal_size(unsigned *xx, unsigned *yy);
 int terminal_probesize(unsigned *xx, unsigned *yy);
 #define KEY_UP 0
@@ -423,8 +423,8 @@ pid_t __attribute__((returns_twice)) xvforkwrap(pid_t pid);
 // Wrapper that discards true/false "did it exit" value.
 #define NOEXIT(x) WOULD_EXIT(_noexit_res, x)
 
-#define minof(a, b) ({typeof(a) aa = (a); typeof(b) bb = (b); aa<bb ? aa : bb;})
-#define maxof(a, b) ({typeof(a) aa = (a); typeof(b) bb = (b); aa>bb ? aa : bb;})
+#define minof(a, b) ({__typeof__(a) aa = (a); __typeof__(b) bb = (b); aa<bb ? aa : bb;})
+#define maxof(a, b) ({__typeof__(a) aa = (a); __typeof__(b) bb = (b); aa>bb ? aa : bb;})
 
 // Functions in need of further review/cleanup
 #include "lib/pending.h"

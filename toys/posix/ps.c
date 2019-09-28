@@ -1288,7 +1288,7 @@ void ps_main(void)
 
   TT.ticks = sysconf(_SC_CLK_TCK); // units for starttime/uptime
 
-  if (-1 != (i = tty_fd())) {
+  if (-1 != (i = tty_fd_tb())) {
     struct stat st;
 
     if (!fstat(i, &st)) TT.tty = st.st_rdev;
@@ -1733,7 +1733,7 @@ static void top_common(
 static void top_setup(char *defo, char *defk)
 {
   TT.ticks = sysconf(_SC_CLK_TCK); // units for starttime/uptime
-  TT.tty = tty_fd() != -1;
+  TT.tty = tty_fd_tb() != -1;
 
   // Are we doing "batch" output or interactive?
   if (FLAG(b)) TT.width = TT.height = 99999;

@@ -5,7 +5,7 @@
 
 #include "toys.h"
 
-int tty_fd(void)
+int tty_fd_tb(void)
 {
   int i, j;
 
