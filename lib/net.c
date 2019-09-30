@@ -49,7 +49,7 @@ static int xconnbind(struct addrinfo *ai_arg, int dobind)
     xsetsockopt(fd, SOL_SOCKET, SO_REUSEADDR, &one, sizeof(one));
     if (dobind && !bind(fd, ai->ai_addr, ai->ai_addrlen))
         break;
-    else if (!dobind && connect(fd, ai->ai_addr, ai->ai_addrlen))
+    else if (!dobind && !connect(fd, ai->ai_addr, ai->ai_addrlen))
         break;
     else if (!ai->ai_next) perror_exit_raw(dobind ? "bind" : "connect");
     close(fd);
